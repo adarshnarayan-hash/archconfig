@@ -21,6 +21,7 @@ return {
       markdown = { "prettierd", "prettier", stop_after_first = true },
       sh = { "shfmt" },
       proto = { "clang-format" },
+      bzl = { "buildifier" }, -- BUILD, WORKSPACE, MODULE.bazel, *.bzl
     },
     format_on_save = {
       timeout_ms = 3000,

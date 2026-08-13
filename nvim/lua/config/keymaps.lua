@@ -129,3 +129,15 @@ map("n", "<leader>gd", function() Snacks.picker.git_diff() end, { desc = "Git Di
 -- Notifications
 map("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "Dismiss Notifications" })
 map("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification History" })
+
+-- Bazel Go tests (this repo uses bazel test, not `go test`)
+local bazel_test = require("config.bazel_test")
+map("n", "<leader>tn", bazel_test.run_nearest, { desc = "Bazel Test Nearest (function under cursor)" })
+map("n", "<leader>tB", bazel_test.run_package, { desc = "Bazel Test Package (whole file's pkg)" })
+map("n", "<leader>tl", bazel_test.run_last, { desc = "Bazel Test/Demo Last (re-run)" })
+
+-- Bazel demos: `ENVIRONMENT=<env> bazel run //pkg:demo -- <MethodUnderCursor> [args]`
+map("n", "<leader>rd", bazel_test.run_demo_staging, { desc = "Bazel Run Demo (staging)" })
+map("n", "<leader>rp", bazel_test.run_demo_prod, { desc = "Bazel Run Demo (prod, confirm)" })
+map("n", "<leader>ra", bazel_test.run_demo_prompt, { desc = "Bazel Run Demo (pick env + args)" })
+map("n", "<leader>rl", bazel_test.run_last, { desc = "Bazel Run Last (re-run)" })

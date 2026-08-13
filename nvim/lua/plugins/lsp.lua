@@ -29,6 +29,8 @@ return {
         "docker_compose_language_service",
         "taplo",
         "eslint",
+        "protols",
+        "starpls",
       },
       automatic_enable = true,
     },
@@ -100,6 +102,14 @@ return {
 
       vim.lsp.config("clangd", {
         capabilities = { offsetEncoding = { "utf-16" } },
+      })
+
+      -- Use protols for LSP features but let clang-format (via conform) do formatting.
+      vim.lsp.config("protols", {
+        on_attach = function(client)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
       })
 
       -- Keymaps on LspAttach

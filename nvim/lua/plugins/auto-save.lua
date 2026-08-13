@@ -32,6 +32,12 @@ return {
         return false
       end
 
+      -- Oil directory buffers use buftype "acwrite"; allow them so file
+      -- operations (rename/create/delete) get applied automatically.
+      if fn.getbufvar(buf, "&filetype") == "oil" then
+        return true
+      end
+
       -- 2. Don't save for special "buftypes" (like terminal or quickfix)
       if fn.getbufvar(buf, "&buftype") ~= "" then
         return false

@@ -47,6 +47,7 @@ return {
         { "<leader>g", group = "git" },
         -- { "<leader>gh", group = "hunks" },
         { "<leader>q", group = "quit/session" },
+        { "<leader>r", group = "run" },
         { "<leader>s", group = "search" },
         { "<leader>t", group = "test" },
         { "<leader>u", group = "ui" },
@@ -176,6 +177,20 @@ return {
           Snacks.picker.todo_comments()
         end,
         desc = "Todo",
+      },
+      {
+        "<leader>ft",
+        function()
+          Snacks.picker.todo_comments()
+        end,
+        desc = "Find Todos (TODO/FIX/HACK/…)",
+      },
+      {
+        "<leader>fT",
+        function()
+          Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } })
+        end,
+        desc = "Find Todo/Fix/Fixme",
       },
     },
   },

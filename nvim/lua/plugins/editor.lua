@@ -27,7 +27,22 @@ return {
   { "echasnovski/mini.ai", event = "VeryLazy", opts = { n_lines = 500 } },
 
   -- Mini.surround
-  { "echasnovski/mini.surround", event = "VeryLazy", opts = {} },
+  {
+    "echasnovski/mini.surround",
+    event = "VeryLazy",
+    -- Use a "gs" prefix so it doesn't clash with flash.nvim's "s" jump.
+    opts = {
+      mappings = {
+        add = "gsa", -- Add surrounding in Normal and Visual modes
+        delete = "gsd", -- Delete surrounding
+        find = "gsf", -- Find surrounding (to the right)
+        find_left = "gsF", -- Find surrounding (to the left)
+        highlight = "gsh", -- Highlight surrounding
+        replace = "gsr", -- Replace surrounding
+        update_n_lines = "gsn", -- Update `n_lines`
+      },
+    },
+  },
 
   -- Mini.hipatterns
   {
