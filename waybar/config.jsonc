@@ -9,14 +9,15 @@
     "margin-top": 10,
     "margin-left": 10,
     "margin-right": 10,
-
     "modules-left": [
       "custom/menu",
       "hyprland/workspaces",
       "hyprland/window",
       "wlr/taskbar",
     ],
-    "modules-center": ["clock"],
+    "modules-center": [
+      "clock"
+    ],
     "modules-right": [
       "privacy",
       "custom/playerctl",
@@ -28,25 +29,24 @@
       "group/group-vitals",
       "custom/notification",
     ],
-
     //====================MODULES_LEFT====================
-
     "custom/menu": {
       "format": "󰣇",
       "on-click": "rofi -show-icons -theme-str \"window {location: north west; x-offset: 4; y-offset: 2;} listview {columns: 2;}\" -show drun -modi run,drun,filebrowser",
       "on-click-right": "$HOME/.config/rofi/scripts/power-menu waybar",
       "tooltip": false,
     },
-
     "hyprland/workspaces": {
       "on-click": "activate",
       "on-double-click": "hyprctl dispatch togglespecialworkspace magic",
       "on-scroll-up": "hyprctl dispatch workspace m+1",
       "on-scroll-down": "hyprctl dispatch workspace m-1",
       "show-special": true,
-      "ignore-workspaces": ["special:magic", "special:magic2"],
+      "ignore-workspaces": [
+        "special:magic",
+        "special:magic2"
+      ],
     },
-
     "hyprland/window": {
       "format": "{title}",
       "icon": true,
@@ -65,7 +65,6 @@
       "on-scroll-up": "hyprctl dispatch movefocus r",
       "on-scroll-down": "hyprctl dispatch movefocus l",
     },
-
     "wlr/taskbar": {
       "format": "{icon}",
       "all-outputs": true,
@@ -74,11 +73,11 @@
       "tooltip-format": "{title}",
       "on-click": "activate",
       "on-click-right": "close",
-      "ignore-list": ["clock-bg"],
+      "ignore-list": [
+        "clock-bg"
+      ],
     },
-
     //====================MODULES_CENTER====================
-
     "clock": {
       "interval": 1,
       "format": "{:%I:%M:%OS | %d %a}",
@@ -99,9 +98,7 @@
       // "on-scroll-up": "shift_up",
       // "on-scroll-down": "shift_down",
     },
-
     //====================MODULES_RIGHT====================
-
     "privacy": {
       "icon-spacing": 10,
       "icon-size": 14,
@@ -121,7 +118,6 @@
         },
       ],
     },
-
     "custom/playerctl": {
       "format": "{} A",
       "return-type": "json",
@@ -133,21 +129,21 @@
       "on-scroll-up": "playerctl  volume 0.5+",
       "on-scroll-down": "playerctl  volume 0.5-",
     },
-
     "tray": {
       "icon-size": 15,
       "spacing": 10,
     },
-
     "group/group-audio": {
       "orientation": "horizontal",
       "drawer": {
         "transition-duration": 300,
         "transition-left-to-right": false,
       },
-      "modules": ["pulseaudio#output", "pulseaudio#input"],
+      "modules": [
+        "pulseaudio#output",
+        "pulseaudio#input"
+      ],
     },
-
     "pulseaudio#output": {
       "format": "{icon}‎  {volume}",
       "format-bluetooth": "{icon}‎  ‎  {volume}",
@@ -160,7 +156,11 @@
         "phone": "",
         "portable": "",
         "car": "",
-        "default": ["", "", ""],
+        "default": [
+          "",
+          "",
+          ""
+        ],
       },
       "on-click": "swayosd-client --output-volume mute-toggle --max-volume 200 || wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
       "on-click-right": "rofi -theme-str \"configuration {show-icons: false;} window {location: north east; x-offset: -307; y-offset: 2; width: 250px;} listview {columns: 1;} element-text {vertical-align: 0.50; horizontal-align: 0.50;} inputbar {enabled: false;}\" -modes out:$HOME/.config/rofi/scripts/sound-output-port.sh,in:$HOME/.config/rofi/scripts/sound-input-port.sh -show out",
@@ -168,7 +168,6 @@
       "on-scroll-down": "wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 | (swayosd-client --output-volume -1 --max-volume 200 || wpctl set-volume -l '1.5' @DEFAULT_AUDIO_SINK@ 1%-)",
       "max-volume": 200,
     },
-
     "pulseaudio#input": {
       "format": "{format_source}",
       "format-source": "  {volume}",
@@ -190,7 +189,6 @@
     //   "on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.02",
     //   "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.02",
     // },
-
     "group/group-power": {
       "orientation": "horizontal",
       "drawer": {
@@ -205,7 +203,6 @@
         "custom/kbd-backlight",
       ], //"backlight" removed as not working
     },
-
     "battery": {
       "interval": 2,
       "states": {
@@ -216,14 +213,25 @@
       "format": "{icon} {capacity}",
       "format-alt": "{icon} {capacity}",
       "format-charging": "{icon}󱐋 {capacity}",
-      "format-plugged": " 100",
+      "format-plugged": " {capacity}",
       "format-full": "󱟢 {capacity}",
       "format-discharging": "{icon} {capacity}",
-      "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      "format-icons": [
+        "󰂎",
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ],
       "on-click": "sleep 0.1 && power-options-gtk",
       "tooltip-format": "{timeTo}\nHealth: {health}%\nPower: {power}",
     },
-
     "idle_inhibitor": {
       "format": "{icon}",
       "format-icons": {
@@ -234,7 +242,6 @@
       "on-click": "notify-send -e -h string:x-canonical-private-synchronous:idle_inhibited 'Idle_Inhibition Changed!'",
       "on-click-right": "sleep 0.1 && hyprlock",
     },
-
     "custom/kbd-backlight": {
       //"backlight"
       "format": "󰌌 {}",
@@ -244,7 +251,6 @@
       "on-scroll-down": "brightnessctl -d 'tpacpi::kbd_backlight' set 1-",
       "tooltip-format": "Keyboard Backlight",
     },
-
     "custom/wl-gammarelay-temperature": {
       "format": "󰽥 {}",
       "exec": "wl-gammarelay-rs watch {t}",
@@ -254,7 +260,6 @@
       "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100",
       "tooltip-format": "Temperature",
     },
-
     "custom/wl-gammarelay-brightness": {
       "format": "󰌵 {}",
       "exec": "wl-gammarelay-rs watch {bp}",
@@ -264,21 +269,28 @@
       "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.01",
       "tooltip-format": "Brightness",
     },
-
     "group/group-connection": {
       "orientation": "horizontal",
       "drawer": {
         "transition-duration": 300,
         "trnsition-left-to-right": false,
       },
-      "modules": ["network", "bluetooth"],
+      "modules": [
+        "network",
+        "bluetooth"
+      ],
     },
-
     "network": {
       "interval": 1,
       "format": "󰤮 OFF",
       "format-wifi": "{icon} {signalStrength}% ON",
-      "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+      "format-icons": [
+        "󰤯",
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+      ],
       "format-ethernet": "  ON",
       "format-linked": "󰈁 ON",
       "format-disconnected": "󰤮 ON",
@@ -287,7 +299,6 @@
       "on-click": "$HOME/.config/rofi/scripts/wifi.sh",
       "on-click-right": "sleep 0.1 && nm-connection-editor",
     },
-
     "bluetooth": {
       "interval": 5,
       "format": "{status}",
@@ -303,16 +314,17 @@
       "on-click": "$HOME/.config/rofi/scripts/bluetooth",
       "on-click-right": "sleep 0.1 && blueman-manager",
     },
-
     "group/group-vitals": {
       "orientation": "horizontal",
       "drawer": {
         "transition-duration": 300,
         "transition-left-to-right": false,
       },
-      "modules": ["memory", "cpu"],
+      "modules": [
+        "memory",
+        "cpu"
+      ],
     },
-
     "cpu": {
       "interval": 2,
       "format": " {usage}%",
@@ -320,7 +332,6 @@
       "on-click": "sleep 0.1 && ghostty -e btop",
       "on-click-right": "sleep 0.1 && ghostty -e htop",
     },
-
     "memory": {
       "interval": 2,
       "format": "󰑭 {used:0.1f}GiB",
@@ -329,7 +340,6 @@
       "on-click": "sleep 0.1 && missioncenter",
       "on-click-right": "sleep 0.1 && resources",
     },
-
     "custom/notification": {
       "tooltip": false,
       "format": "{icon}<span><sup>{0}</sup></span>",
@@ -350,7 +360,6 @@
       "on-click-right": "sleep 0.1 && swaync-client -d -sw",
       "escape": true,
     },
-
     // "wireplumber": {
     //   "format": "{icon} {volume}",
     //   "format-bluetooth": "{volume} {icon}",
@@ -369,9 +378,12 @@
     //   "max-volume": 150,
     //   "scroll-step": 2
     // },
-
-    "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"],
-
+    "format-icons": [
+      "󰃞",
+      "󰃝",
+      "󰃟",
+      "󰃠"
+    ],
     // "custom/wl-gammarelay-gamma": {
     //    "format": "{}% γ",
     //    "exec": "wl-gammarelay-rs watch {g}",
@@ -380,7 +392,6 @@
     //    "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d -0.02"
     // },
   },
-
   {
     "id": 2,
     "layer": "top",
@@ -391,25 +402,31 @@
     "margin-top": 4,
     "margin-left": 4,
     "margin-right": 4,
-
-    "modules-left": ["custom/menu", "hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["wlr/taskbar", "group/group-audio", "tray"],
-
+    "modules-left": [
+      "custom/menu",
+      "hyprland/workspaces",
+      "hyprland/window"
+    ],
+    "modules-center": [
+      "clock"
+    ],
+    "modules-right": [
+      "wlr/taskbar",
+      "group/group-audio",
+      "tray"
+    ],
     //====================MODULES_LEFT====================
-
     "custom/menu": {
       "format": "󰣇",
       "on-click": "rofi -show-icons -theme-str \"window {location: north west; x-offset: 4; y-offset: 2;} listview {columns: 2;}\" -show drun -modi run,drun,filebrowser",
       "on-click-right": "$HOME/.config/rofi/scripts/power-menu waybar",
       "tooltip": false,
     },
-
     "hyprland/workspaces": {
-      "persistent-workspaces": {
-        "7": [],
-        "8": [],
-      },
+      // "persistent-workspaces": {
+      //   "7": [],
+      //   "8": [],
+      // },
       "format": "{id}", //{icon}
       "format-icons": {
         "1": "",
@@ -431,9 +448,11 @@
       "on-scroll-up": "hyprctl dispatch workspace m+1",
       "on-scroll-down": "hyprctl dispatch workspace m-1",
       "show-special": true,
-      "ignore-workspaces": ["special:magic", "special:magic2"],
+      "ignore-workspaces": [
+        "special:magic",
+        "special:magic2"
+      ],
     },
-
     "hyprland/window": {
       "format": "{title}",
       "icon": true,
@@ -449,9 +468,7 @@
       "on-click": "$ROFI 'rofi -show-icons -theme-str \"window {location: north west; width: 600px; x-offset: 76; y-offset: 2;}\" -show window -modi window'",
       "on-click-right": "hyprctl dispatch killactive",
     },
-
     //====================MODULES_CENTER====================
-
     "clock": {
       "interval": 1,
       "format": "{:%I:%M:%OS %p  %A  %d %h %Y}",
@@ -467,27 +484,27 @@
           "today": "<span foreground='#00CCCC'><big><b><u>{}</u></b></big></span>",
         },
       },
-      "on-click": "firefox  https:///calendar.google.com/calendar/u/0/r/week", //"mode"
+      "on-click": "zen-browser https://calendar.google.com/calendar/u/0/r/week", //"mode
       // "on-click-right": "shift_reset",
       // "on-scroll-up": "shift_up",
       // "on-scroll-down": "shift_down",
     },
     //====================MODULES_RIGHT====================
-
     "tray": {
       "icon-size": 15,
       "spacing": 10,
     },
-
     "group/group-audio": {
       "orientation": "horizontal",
       "drawer": {
         "transition-duration": 300,
         "transition-left-to-right": false,
       },
-      "modules": ["pulseaudio#output", "pulseaudio#input"],
+      "modules": [
+        "pulseaudio#output",
+        "pulseaudio#input"
+      ],
     },
-
     "pulseaudio#output": {
       // "format": "{icon}  {volume}",
       // "rotate": 0,
@@ -515,10 +532,13 @@
         "phone": "",
         "portable": "",
         "car": "",
-        "default": ["", "", ""],
+        "default": [
+          "",
+          "",
+          ""
+        ],
       },
     },
-
     "pulseaudio#input": {
       "format": "{format_source}",
       "format-source": " {volume}",
@@ -528,7 +548,6 @@
       "on-scroll-up": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0 | (swayosd-client --input-volume +1 || wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+)",
       "on-scroll-down": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0 | (swayosd-client --input-volume -1 || wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-)",
     },
-
     "wlr/taskbar": {
       "format": "{icon}",
       "max-length": 25,
@@ -538,7 +557,9 @@
       "tooltip-format": "{title}",
       "on-click": "activate",
       "on-click-right": "close",
-      "ignore-list": ["clock-bg"],
+      "ignore-list": [
+        "clock-bg"
+      ],
     },
   },
   {
@@ -551,11 +572,11 @@
     "margin-bottom": 4,
     "margin-left": 4,
     "margin-right": 4,
-
     "modules-left": [],
-    "modules-center": ["wlr/taskbar"],
+    "modules-center": [
+      "wlr/taskbar"
+    ],
     "modules-right": [],
-
     "wlr/taskbar": {
       "format": "{icon}",
       "max-length": 25,
@@ -565,7 +586,9 @@
       "tooltip-format": "{title}",
       "on-click": "activate",
       "on-click-right": "close",
-      "ignore-list": ["clock-bg"],
+      "ignore-list": [
+        "clock-bg"
+      ],
     },
   },
 ]
